@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Stay Private Online – Protect Your ID</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-soft: #0b1020;
+      --card: #111827;
+      --accent: #22c55e;
+      --accent-soft: rgba(34,197,94,0.12);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --danger: #f97373;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 50%, #000 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 24px 16px 56px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(34,197,94,0.08);
+      color: var(--accent);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(34,197,94,0.9);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .navbar {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 16px 0;
+      margin-bottom: 24px;
+    }
+
+    .navbar-content {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 0 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .header-logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .header-logo img {
+      max-width: 280px;
+      height: auto;
+      filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 40px rgba(255, 255, 255, 0.15));
+    }
+
+    h1 {
+      font-size: 30px;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    @media (min-width: 640px) {
+      h1 { font-size: 38px; }
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .hero-sub span {
+      color: var(--danger);
+      font-weight: 600;
+    }
+
+    .hero-cta {
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 15px;
+      background: linear-gradient(135deg, #22c55e, #4ade80);
+      color: #022c22;
+      box-shadow: 0 15px 40px rgba(34,197,94,0.45);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 45px rgba(34,197,94,0.55);
+      filter: brightness(1.05);
+    }
+
+    .btn-primary span.arrow {
+      font-size: 16px;
+      margin-left: 2px;
+    }
+
+    .hero-note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    main.sections {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+      margin-top: 32px;
+    }
+
+    .section-block {
+      background: radial-gradient(circle at top left, rgba(34,197,94,0.05), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(59,130,246,0.05), transparent 60%),
+                  var(--card);
+      border-radius: 24px;
+      padding: 22px 18px;
+      border: 1px solid rgba(148,163,184,0.24);
+      box-shadow: 0 22px 45px rgba(15,23,42,0.9);
+    }
+
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    .section-lede {
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .section-block p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .section-tag {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.3);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .highlight {
+      background: rgba(15,23,42,0.95);
+      border-radius: 14px;
+      padding: 10px 12px;
+      border: 1px solid rgba(148,163,184,0.35);
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .highlight strong { color: var(--text); }
+
+    .examples {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .example-line {
+      font-size: 13px;
+      background: rgba(15,23,42,0.95);
+      border-radius: 10px;
+      padding: 8px 10px;
+      border: 1px dashed rgba(148,163,184,0.5);
+    }
+
+    .example-line span.label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-right: 6px;
+    }
+
+    .emoji-list {
+      list-style: none;
+      margin: 6px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 0;
+    }
+
+    .emoji-list li {
+      font-size: 14px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .emoji-list.is-featured {
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .emoji-list.is-featured li {
+      font-size: 18px;
+      font-weight: 600;
+      justify-content: center;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    @media (min-width: 640px) {
+      .steps {
+        grid-template-columns: repeat(3, minmax(0,1fr));
+      }
+    }
+
+    .step {
+      background: rgba(15,23,42,0.95);
+      border-radius: 14px;
+      padding: 10px 10px;
+      border: 1px solid rgba(148,163,184,0.35);
+      font-size: 13px;
+    }
+
+    .step-num {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .step-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .step p { font-size: 12px; color: var(--muted); }
+
+    .section-cta {
+      background: linear-gradient(145deg, rgba(34,197,94,0.2), rgba(15,23,42,1));
+      border: 1px solid rgba(34,197,94,0.45);
+      box-shadow: 0 18px 45px rgba(22,163,74,0.35);
+    }
+
+    .section-cta .section-lede {
+      color: var(--text);
+    }
+
+    .section-cta .right-cta-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .money-back-guarantee {
+      margin-top: 20px;
+      padding: 16px;
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .money-back-guarantee .guarantee-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .money-back-guarantee .guarantee-text {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .section-inline-cta {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(148,163,184,0.2);
+      text-align: center;
+    }
+
+    .section-inline-cta .cta-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-inline-cta .btn-section {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(34,197,94,0.4);
+      background: rgba(34,197,94,0.1);
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.12s ease;
+      cursor: pointer;
+    }
+
+    .section-inline-cta .btn-section:hover {
+      background: rgba(34,197,94,0.2);
+      border-color: rgba(34,197,94,0.6);
+      transform: translateY(-1px);
+    }
+
+    .compatibility-section {
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 18px;
+    }
+
+    .compatibility-label {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .compatibility-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .compatibility-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      opacity: 0.8;
+      transition: opacity 0.2s ease;
+    }
+
+    .compatibility-logo:hover {
+      opacity: 1;
+    }
+
+    .compatibility-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: 0.7;
+    }
+
+    .check-list {
+      list-style: none;
+      margin-top: 4px;
+    }
+
+    .check-list li {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 3px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .check-icon {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: rgba(34,197,94,0.16);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: var(--accent);
+    }
+
+    .qa-list {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .qa {
+      background: rgba(15,23,42,0.98);
+      border-radius: 12px;
+      padding: 9px 10px;
+      border: 1px solid rgba(55,65,81,0.9);
+      font-size: 13px;
+    }
+
+    .qa q {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .qa span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .mini-faq {
+      margin-top: 14px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(31,41,55,0.9);
+    }
+
+    .mini-faq h3 {
+      font-size: 13px;
+      margin-bottom: 4px;
+      color: var(--muted);
+    }
+
+    .mini-faq p {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    footer {
+      margin-top: 24px;
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      opacity: 0.8;
+    }
+
+    footer p + p {
+      margin-top: 3px;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div class="header-logo">
+        <img src="Gemini_logo2-small-FINAL.png" alt="ProtectYourID.net Australia" />
+      </div>
+    </div>
+  </nav>
+
+  <div class="page">
+    <!-- HERO -->
+    <header>
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Online ID Laws • Australia
+      </div>
+
+      <h1>Australia's new online-ID rules are coming.<br />Protect your privacy.</h1>
+
+      <p class="hero-sub">
+        Soon, adults may be asked to upload their government ID to access social platforms and 18+ sites.<br />
+        <span>Once your ID is uploaded to those third-party verification sites, you can't pull it back.</span>
+      </p>
+
+      <div class="compatibility-section">
+        <div class="compatibility-label">Compatible with:</div>
+        <div class="compatibility-logos">
+          <div class="compatibility-logo">
+            <img src="apple.png" alt="Apple" />
+          </div>
+          <div class="compatibility-logo">
+            <img src="android.png" alt="Android" />
+          </div>
+          <div class="compatibility-logo">
+            <img src="windows.png" alt="Windows" />
+          </div>
+          <div class="compatibility-logo">
+            <img src="chrome.png" alt="Chrome" />
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <a href="#cta" class="btn-primary">
+          <span>Protect Your ID</span>
+          <span class="arrow">➜</span>
+        </a>
+        <p class="hero-note">7-day trial available</p>
+        <p class="hero-note" style="margin-top: 4px;">VPNs are for privacy, not for avoiding legal requirements.</p>
+      </div>
+    </header>
+
+    <main class="sections">
+      <!-- Section: What’s changing -->
+      <section class="section-block" id="whats-changing">
+        <div class="section-header">
+          <p class="section-tag">What’s changing</p>
+          <h2 class="section-title">More sites want your real name, real ID, and real location before they let you in.</h2>
+          <ul class="emoji-list">
+            <li><span>🪪</span><span>Age gates now request licence scans instead of simple checkboxes.</span></li>
+            <li><span>🔗</span><span>Your documents flow through third-party verification companies.</span></li>
+            <li><span>🗺️</span><span>Real-world identity and location get tied to every login request.</span></li>
+          </ul>
+        </div>
+
+        <div class="section-inline-cta">
+          <div class="cta-text">Protect your information now</div>
+          <a href="#cta" class="btn-section">
+            <span>Start your 7 day trial now</span>
+            <span class="arrow">➜</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Section: Why people are worried -->
+      <section class="section-block" id="why-worried">
+        <div class="section-header">
+          <p class="section-tag">Why it matters</p>
+          <h2 class="section-title">Do you want to upload your ID to 3rd-party companies that could get hacked?</h2>
+          <p class="section-lede">
+            It’s not just “age checks”. It’s about how much of your life is stored, tracked, and profiled online once copies
+            of your ID start living on other people’s servers.
+          </p>
+        </div>
+
+        <ul class="check-list">
+          <li><span class="check-icon">!</span><span>Data breaches – your ID sitting on servers that can be hacked.</span></li>
+          <li><span class="check-icon">!</span><span>Third-party companies you’ve never heard of holding your documents.</span></li>
+          <li><span class="check-icon">!</span><span>Detailed profiles built on where you go and what you do online.</span></li>
+        </ul>
+
+        <div class="section-inline-cta">
+          <div class="cta-text">Keep your ID private</div>
+          <a href="#cta" class="btn-section">
+            <span>Start your 7 day trial now</span>
+            <span class="arrow">➜</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Section: How VPNs help -->
+      <section class="section-block" id="how-it-helps">
+        <div class="section-header">
+          <p class="section-tag">What you can do</p>
+          <h2 class="section-title">Keep your browsing private, minimise what’s tied to your real ID, and stay in control of your digital footprint.</h2>
+          <p class="section-lede">
+            A privacy-focused VPN makes it harder for websites and companies to tie your activity back to your real-world identity.
+          </p>
+        </div>
+
+        <ul class="check-list">
+          <li><span class="check-icon">✓</span><span>Hides your real IP address from the sites you visit.</span></li>
+          <li><span class="check-icon">✓</span><span>Encrypts your traffic so your internet provider can’t see exactly what you’re doing.</span></li>
+          <li><span class="check-icon">✓</span><span>Reduces how much data is linked to your real home connection.</span></li>
+        </ul>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">Step 1</div>
+            <div class="step-title">Get a trusted VPN</div>
+            <p>Choose a VPN with strong privacy policies and a simple app for your phone & computer.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">Step 2</div>
+            <div class="step-title">Turn it on before you browse</div>
+            <p>Tap once, connect, and let it run in the background while you’re online.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">Step 3</div>
+            <div class="step-title">Keep Your ID Private, stay private</div>
+            <p>Enjoy the sites and services you use, while keeping more of your identity to yourself.</p>
+          </div>
+        </div>
+
+        <div class="section-inline-cta">
+          <div class="cta-text">Start protecting your privacy now</div>
+          <a href="#cta" class="btn-section">
+            <span>Start your 7 day trial now</span>
+            <span class="arrow">➜</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Section: How to protect your online privacy -->
+      <section class="section-block" id="how-to-avoid-id">
+        <div class="section-header">
+          <p class="section-tag">How to use</p>
+          <h2 class="section-title">How to stay private online</h2>
+          <p class="section-lede">
+            Follow these simple steps to protect your privacy and reduce the amount of personal information you share online.
+          </p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">Step 1</div>
+            <div class="step-title">Install the app</div>
+            <p>Use a trusted VPN to protect your data.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">Step 2</div>
+            <div class="step-title">Connect before browsing</div>
+            <p>This helps limit how much online activity is linked to your personal details.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">Step 3</div>
+            <div class="step-title">Keep your privacy online</div>
+            <p>Enjoy the sites and apps you use with an extra layer of protection.</p>
+          </div>
+        </div>
+
+        <div class="section-inline-cta">
+          <div class="cta-text">Get started now</div>
+          <a href="#cta" class="btn-section">
+            <span>Start your 7 day trial now</span>
+            <span class="arrow">➜</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Section: CTA -->
+      <section class="section-block section-cta" id="cta">
+        <div class="section-header">
+          <p class="section-tag">For adults who don’t want to hand over their ID</p>
+          <h2 class="section-title">Protect your ID now. Start your 7-day trial with a privacy-focused VPN.</h2>
+          <p class="section-lede">
+            If you’d rather not upload your licence to yet another company, you’re not alone. Many adults turn to VPNs to
+            protect their privacy and keep their access.
+          </p>
+        </div>
+
+        <ul class="emoji-list is-featured">
+          <li><span>🛡️</span><span>Protect your ID now.</span></li>
+          <li><span>🚀</span><span>Start your 7-day trial with a privacy-focused VPN.</span></li>
+        </ul>
+
+        <div class="compatibility-section" style="margin-top: 20px;">
+          <div class="compatibility-label">Compatible with:</div>
+          <div class="compatibility-logos">
+            <div class="compatibility-logo">
+              <img src="apple.png" alt="Apple" />
+            </div>
+            <div class="compatibility-logo">
+              <img src="android.png" alt="Android" />
+            </div>
+            <div class="compatibility-logo">
+              <img src="windows.png" alt="Windows" />
+            </div>
+            <div class="compatibility-logo">
+              <img src="chrome.png" alt="Chrome" />
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 16px; text-align: center;">
+          <a href="https://bit.ly/3X4YWOn" class="btn-primary">
+            <span>Keep Your ID Private</span>
+            <span class="arrow">➜</span>
+          </a>
+          <div class="right-cta-meta">
+            7-day trial available
+          </div>
+        </div>
+
+        <div class="money-back-guarantee">
+          <div class="guarantee-title">31 day money-back guarantee</div>
+          <div class="guarantee-text">If you don't like the service, let us know within your first 31 days. We'll send you a full refund.</div>
+        </div>
+      </section>
+
+      <!-- Section: Quick answers -->
+      <section class="section-block" id="quick-answers">
+        <div class="section-header">
+          <p class="section-tag">Quick answers</p>
+          <h2 class="section-title">The questions people ask most.</h2>
+          <p class="section-lede">Use these to sense-check your options before uploading sensitive ID documents online.</p>
+        </div>
+
+        <div class="qa-list">
+          <div class="qa">
+            <q>Is this about breaking the law?</q>
+            <span>
+              No. This site explains digital privacy options for adults. Always follow Australian laws.
+            </span>
+          </div>
+
+          <div class="qa">
+            <q>Do I have to upload my ID to use the internet?</q>
+            <span>
+              Not for everything. But more sites and services are moving toward stricter verification.
+              The less you spray your ID everywhere, the lower your risk.
+            </span>
+          </div>
+
+          <div class="qa">
+            <q>Why would I use a VPN at all?</q>
+            <span>
+              To keep your location, activity and identity more private from trackers, internet providers,
+              and data-hungry platforms.
+            </span>
+          </div>
+        </div>
+
+        <div class="mini-faq">
+          <h3>Before the new rules kick in…</h3>
+          <p>✔ Decide how comfortable you are uploading your ID to multiple companies.</p>
+          <p>✔ Set up tools (like a VPN) that reduce how much of your activity is tied to your real identity.</p>
+          <p>✔ Keep control of your access instead of reacting later.</p>
+        </div>
+
+        <div class="section-inline-cta">
+          <div class="cta-text">Take action now</div>
+          <a href="#cta" class="btn-section">
+            <span>Start your 7 day trial now</span>
+            <span class="arrow">➜</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>This site provides general information about digital privacy only and is not legal advice.</p>
+      <p>We support online safety and responsible use of the internet. Always follow local laws in your area.</p>
+      <p>This website does not provide guidance on bypassing age-verification or legal requirements.</p>
+    </footer>
+  </div>
+</body>
+</html>
