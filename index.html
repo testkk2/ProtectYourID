@@ -109,7 +109,7 @@
     }
 
     .hero-sub span {
-      color: var(--danger);
+      color: #facc15;
       font-weight: 600;
     }
 
@@ -316,7 +316,7 @@
 
     .step-title {
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 4px;
     }
 
@@ -356,7 +356,7 @@
 
     .money-back-guarantee .guarantee-text {
       font-size: 13px;
-      color: var(--muted);
+      color: var(--text);
       line-height: 1.5;
     }
 
@@ -394,6 +394,91 @@
       background: rgba(34,197,94,0.2);
       border-color: rgba(34,197,94,0.6);
       transform: translateY(-1px);
+    }
+
+    .fact-section {
+      background: #1a1a1a;
+      border: 1px solid rgba(250,204,21,0.35);
+      border-radius: 20px;
+      padding: 18px 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+    }
+
+    .fact-countdown {
+      text-align: center;
+      font-size: 17px;
+      font-weight: 700;
+      color: #facc15;
+      margin-bottom: 10px;
+    }
+
+    .fact-title {
+      font-size: 20px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text);
+      margin-bottom: 6px;
+      text-align: center;
+    }
+
+    .fact-title .fact-date {
+      color: #facc15;
+      font-weight: 800;
+      margin-left: 6px;
+    }
+
+    .fact-body p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .fact-warning-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fcd34d;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .fact-warning-title span.icon {
+      font-size: 16px;
+    }
+
+    .fact-list {
+      list-style: none;
+      margin: 0 0 10px 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .fact-list li {
+      font-size: 13px;
+      color: var(--muted);
+      background: rgba(15,23,42,0.7);
+      border-radius: 10px;
+      padding: 8px 10px;
+      border: 1px solid rgba(148,163,184,0.2);
+    }
+
+    .fact-footer {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-top: 4px;
+    }
+
+    .fact-footnote {
+      font-size: 11px;
+      color: rgba(148,163,184,0.7);
+      margin-top: 8px;
+      text-align: center;
+      line-height: 1.4;
     }
 
     .compatibility-section {
@@ -579,6 +664,26 @@
     </header>
 
     <main class="sections">
+      <!-- Section: Law deadline fact box -->
+      <section class="fact-section" id="law-deadline">
+        <h2 class="fact-title">Know the Law:<span class="fact-date"> December 10, 2025*</span></h2>
+        <div class="fact-countdown" id="law-countdown">-- days • -- hours • -- minutes remaining</div>
+        <div class="fact-body">
+          <p>That is the date strict age-verification enforcement begins in Australia.</p>
+          <p>The Online Safety Amendment has passed. From this date, major platforms (like Instagram, TikTok, and X) must verify that Australian users are over 16.</p>
+        </div>
+        <div class="fact-warning">
+          <p class="fact-warning-title"><span class="icon">⚠️</span>What this means for adults</p>
+          <ul class="fact-list">
+            <li>May require: Scanning your Government ID (Driver's Licence/Passport).</li>
+            <li>Undergo facial recognition scanning.</li>
+            <li>Link your social accounts to your real-world identity.</li>
+          </ul>
+        </div>
+        <p class="fact-footer">Don't wait until the deadline. Secure your digital freedom today.</p>
+        <p class="fact-footnote">*Information provided is for educational purposes based on the Online Safety Amendment (Social Media Minimum Age) Act 2024. Exact implementation dates and verification methods are subject to change by Australian regulators and third-party platforms.</p>
+      </section>
+
       <!-- Section: What’s changing -->
       <section class="section-block" id="whats-changing">
         <div class="section-header">
@@ -591,13 +696,6 @@
           </ul>
         </div>
 
-        <div class="section-inline-cta">
-          <div class="cta-text">Protect your information now</div>
-          <a href="#cta" class="btn-section">
-            <span>Start your 7 day trial now</span>
-            <span class="arrow">➜</span>
-          </a>
-        </div>
       </section>
 
       <!-- Section: Why people are worried -->
@@ -617,13 +715,6 @@
           <li><span class="check-icon">!</span><span>Detailed profiles built on where you go and what you do online.</span></li>
         </ul>
 
-        <div class="section-inline-cta">
-          <div class="cta-text">Keep your ID private</div>
-          <a href="#cta" class="btn-section">
-            <span>Start your 7 day trial now</span>
-            <span class="arrow">➜</span>
-          </a>
-        </div>
       </section>
 
       <!-- Section: How VPNs help -->
@@ -646,7 +737,7 @@
           <div class="step">
             <div class="step-num">Step 1</div>
             <div class="step-title">Get a trusted VPN</div>
-            <p>Choose a VPN with strong privacy policies and a simple app for your phone & computer.</p>
+            <p>Select a server outside of Australia (e.g., USA or UK) to browse as if you are in a region without mandatory ID checks.</p>
           </div>
           <div class="step">
             <div class="step-num">Step 2</div>
@@ -660,50 +751,6 @@
           </div>
         </div>
 
-        <div class="section-inline-cta">
-          <div class="cta-text">Start protecting your privacy now</div>
-          <a href="#cta" class="btn-section">
-            <span>Start your 7 day trial now</span>
-            <span class="arrow">➜</span>
-          </a>
-        </div>
-      </section>
-
-      <!-- Section: How to protect your online privacy -->
-      <section class="section-block" id="how-to-avoid-id">
-        <div class="section-header">
-          <p class="section-tag">How to use</p>
-          <h2 class="section-title">How to stay private online</h2>
-          <p class="section-lede">
-            Follow these simple steps to protect your privacy and reduce the amount of personal information you share online.
-          </p>
-        </div>
-
-        <div class="steps">
-          <div class="step">
-            <div class="step-num">Step 1</div>
-            <div class="step-title">Install the app</div>
-            <p>Use a trusted VPN to protect your data.</p>
-          </div>
-          <div class="step">
-            <div class="step-num">Step 2</div>
-            <div class="step-title">Connect before browsing</div>
-            <p>This helps limit how much online activity is linked to your personal details.</p>
-          </div>
-          <div class="step">
-            <div class="step-num">Step 3</div>
-            <div class="step-title">Keep your privacy online</div>
-            <p>Enjoy the sites and apps you use with an extra layer of protection.</p>
-          </div>
-        </div>
-
-        <div class="section-inline-cta">
-          <div class="cta-text">Get started now</div>
-          <a href="#cta" class="btn-section">
-            <span>Start your 7 day trial now</span>
-            <span class="arrow">➜</span>
-          </a>
-        </div>
       </section>
 
       <!-- Section: CTA -->
@@ -718,27 +765,9 @@
         </div>
 
         <ul class="emoji-list is-featured">
-          <li><span>🛡️</span><span>Protect your ID now.</span></li>
-          <li><span>🚀</span><span>Start your 7-day trial with a privacy-focused VPN.</span></li>
+          <li><span>🛡️</span><span>Browse from a virtual location outside Australia.</span></li>
+          <li><span>🚀</span><span>Encrypt your connection so no one sees your data—not even your ISP.</span></li>
         </ul>
-
-        <div class="compatibility-section" style="margin-top: 20px;">
-          <div class="compatibility-label">Compatible with:</div>
-          <div class="compatibility-logos">
-            <div class="compatibility-logo">
-              <img src="apple.png" alt="Apple" />
-            </div>
-            <div class="compatibility-logo">
-              <img src="android.png" alt="Android" />
-            </div>
-            <div class="compatibility-logo">
-              <img src="windows.png" alt="Windows" />
-            </div>
-            <div class="compatibility-logo">
-              <img src="chrome.png" alt="Chrome" />
-            </div>
-          </div>
-        </div>
 
         <div style="margin-top: 16px; text-align: center;">
           <a href="https://bit.ly/3X4YWOn" class="btn-primary">
@@ -784,7 +813,7 @@
             <q>Why would I use a VPN at all?</q>
             <span>
               To keep your location, activity and identity more private from trackers, internet providers,
-              and data-hungry platforms.
+              and data-hungry platforms, and to change your virtual location, which prevents websites from flagging you as a user who requires local ID verification.
             </span>
           </div>
         </div>
@@ -797,7 +826,6 @@
         </div>
 
         <div class="section-inline-cta">
-          <div class="cta-text">Take action now</div>
           <a href="#cta" class="btn-section">
             <span>Start your 7 day trial now</span>
             <span class="arrow">➜</span>
@@ -813,4 +841,32 @@
     </footer>
   </div>
 </body>
+<script>
+  (function () {
+    const countdownEl = document.getElementById('law-countdown');
+    if (!countdownEl) return;
+
+    const enforcementDate = new Date('2025-12-10T00:00:00+10:00');
+
+    const updateCountdown = () => {
+      const now = new Date();
+      const diff = enforcementDate.getTime() - now.getTime();
+
+      if (diff <= 0) {
+        countdownEl.textContent = 'Enforcement begins today.';
+        clearInterval(intervalId);
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+      countdownEl.textContent = `${days} days • ${hours} hours • ${minutes} minutes remaining`;
+    };
+
+    updateCountdown();
+    const intervalId = setInterval(updateCountdown, 60000);
+  })();
+</script>
 </html>
